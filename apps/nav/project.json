@@ -1,14 +1,14 @@
 {
-  "name": "consumer",
+  "name": "nav",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "sourceRoot": "apps/consumer/src",
+  "sourceRoot": "apps/nav/src",
   "targets": {
     "build": {
       "executor": "qwik-nx:build",
       "options": {
-        "runSequence": ["consumer:build.client", "consumer:build.ssr"],
-        "outputPath": "dist/apps/consumer"
+        "runSequence": ["nav:build.client", "nav:build.ssr"],
+        "outputPath": "dist/apps/nav"
       },
       "configurations": {
         "preview": {}
@@ -17,15 +17,15 @@
     "build.client": {
       "executor": "@nx/vite:build",
       "options": {
-        "outputPath": "dist/apps/consumer",
-        "configFile": "apps/consumer/vite.config.ts"
+        "outputPath": "dist/apps/nav",
+        "configFile": "apps/nav/vite.config.ts"
       }
     },
     "build.ssr": {
       "executor": "@nx/vite:build",
       "defaultConfiguration": "preview",
       "options": {
-        "outputPath": "dist/apps/consumer"
+        "outputPath": "dist/apps/nav"
       },
       "configurations": {
         "preview": {
@@ -37,38 +37,38 @@
     "preview": {
       "executor": "@nx/vite:preview-server",
       "options": {
-        "buildTarget": "consumer:build",
-        "port": 4300
+        "buildTarget": "nav:build",
+        "port": 4201
       }
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["../../coverage/apps/consumer"],
+      "outputs": ["../../coverage/apps/nav"],
       "options": {
         "passWithNoTests": true,
-        "reportsDirectory": "../../coverage/apps/consumer"
+        "reportsDirectory": "../../coverage/apps/nav"
       }
     },
     "serve": {
       "executor": "@nx/vite:dev-server",
       "options": {
-        "buildTarget": "consumer:build.client",
+        "buildTarget": "nav:build.client",
         "mode": "ssr",
-        "port": 4200
+        "port": 4201
       }
     },
     "serve.debug": {
       "executor": "nx:run-commands",
       "options": {
         "command": "node --inspect-brk ../../node_modules/vite/bin/vite.js --mode ssr --force",
-        "cwd": "apps/consumer"
+        "cwd": "apps/nav"
       }
     },
     "lint": {
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/consumer/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/nav/**/*.{ts,tsx,js,jsx}"]
       }
     }
   },

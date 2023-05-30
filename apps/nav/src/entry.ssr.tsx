@@ -23,5 +23,20 @@ export default function (opts: RenderToStreamOptions) {
       lang: 'en-us',
       ...opts.containerAttributes,
     },
+    base: (opts) => {
+      // removing query params from url and unifying to the form "http://localhost:5001/build/"
+      return new URL(opts.serverData!.url).origin + '/build/';
+    },
+    prefetchStrategy: {
+      implementation: {
+        linkInsert: null,
+        workerFetchInsert: null,
+        prefetchEvent: 'always',
+      },
+    },
+    containerTagName: 'div',
+    qwikLoader: {
+      include: 'never',
+    },
   });
 }

@@ -1,0 +1,44 @@
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+.header {
+
+    &__mobile {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: space-evenly;
+
+        @media(min-width: map-get($breakpoints, lg)) {
+            display: none;
+        }
+    }
+
+    &__nav {
+        grid-area: menu;
+        visibility: hidden;
+        opacity: 0;
+        transition: ease all 0.3s;
+        transform: translateY(-10rem);
+
+        @media(min-width: map-get($breakpoints, lg)) {
+            display: block;
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        &--is-open {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
